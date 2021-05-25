@@ -1,13 +1,11 @@
-// var Animal = require("./animal.js");
+var Animal = require("./animal.js");
+var inherit = require("./inherit.js");
 
 function Dog(name) {
-    this.name = name;
+  Animal.call(this, name);
 }
 
-// var Surrogate = function() {};
-// Surrogate.prototype = Animal.prototype;
-// Dog.prototype =  new Surrogate();
-// Dog.prototype.constructor = Dog;
+inherit(Animal, Dog);
 
 Dog.prototype.woof = function () {
   console.log(`woof, I am ${this.name}`);

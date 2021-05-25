@@ -9,13 +9,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./animal.js":
+/*!*******************!*\
+  !*** ./animal.js ***!
+  \*******************/
+/***/ ((module) => {
+
+eval("function Animal(name) {\n    this.name = name;\n}\n\nAnimal.prototype.eat = function() {\n    console.log(\"mmmm, food...\");\n};\n\nmodule.exports = Animal;\n\n//# sourceURL=webpack:///./animal.js?");
+
+/***/ }),
+
 /***/ "./cat.js":
 /*!****************!*\
   !*** ./cat.js ***!
   \****************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// var Animal = require(\"./animal.js\");\n\nfunction Cat(name) {\n  this.name = name;\n}\n\n// var Surrogate = function () {};\n// Surrogate.prototype = Animal.prototype;\n// Cat.prototype = new Surrogate();\n// Cat.prototype.constructor = Cat;\n\nCat.prototype.meow = function () {\n  console.log(`meow, I am ${this.name}`);\n};\n\nmodule.exports = Cat;\n\n\n//# sourceURL=webpack:///./cat.js?");
+eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\nvar inherit = __webpack_require__(/*! ./inherit.js */ \"./inherit.js\");\n\nfunction Cat(name) {\n  Animal.call(this, name);\n}\n\ninherit(Animal, Cat);\n\nCat.prototype.meow = function () {\n  console.log(`meow, I am ${this.name}`);\n};\n\nmodule.exports = Cat;\n\n\n//# sourceURL=webpack:///./cat.js?");
 
 /***/ }),
 
@@ -23,9 +33,19 @@ eval("// var Animal = require(\"./animal.js\");\n\nfunction Cat(name) {\n  this.
 /*!****************!*\
   !*** ./dog.js ***!
   \****************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\nvar inherit = __webpack_require__(/*! ./inherit.js */ \"./inherit.js\");\n\nfunction Dog(name) {\n  Animal.call(this, name);\n}\n\ninherit(Animal, Dog);\n\nDog.prototype.woof = function () {\n  console.log(`woof, I am ${this.name}`);\n};\n\nmodule.exports = Dog;\n\n\n//# sourceURL=webpack:///./dog.js?");
+
+/***/ }),
+
+/***/ "./inherit.js":
+/*!********************!*\
+  !*** ./inherit.js ***!
+  \********************/
 /***/ ((module) => {
 
-eval("// var Animal = require(\"./animal.js\");\n\nfunction Dog(name) {\n    this.name = name;\n}\n\n// var Surrogate = function() {};\n// Surrogate.prototype = Animal.prototype;\n// Dog.prototype =  new Surrogate();\n// Dog.prototype.constructor = Dog;\n\nDog.prototype.woof = function () {\n  console.log(`woof, I am ${this.name}`);\n};\n\nmodule.exports = Dog;\n\n//# sourceURL=webpack:///./dog.js?");
+eval("const inherit = function(parent, child) {\n    var Surrogate = function () {};\n    Surrogate.prototype = parent.prototype;\n    child.prototype = new Surrogate();\n    child.prototype.constructor = child;\n};\n\nmodule.exports = inherit;\n\n//# sourceURL=webpack:///./inherit.js?");
 
 /***/ }),
 
