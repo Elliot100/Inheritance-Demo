@@ -25,7 +25,7 @@ eval("function Animal(name) {\n    this.name = name;\n}\n\nAnimal.prototype.eat 
   \****************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\nvar inherit = __webpack_require__(/*! ./inherit.js */ \"./inherit.js\");\n\nfunction Cat(name) {\n  Animal.call(this, name);\n}\n\ninherit(Animal, Cat);\n\nCat.prototype.meow = function () {\n  console.log(`meow, I am ${this.name}`);\n};\n\nmodule.exports = Cat;\n\n\n//# sourceURL=webpack:///./cat.js?");
+eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\n\nfunction Cat(name) {\n  Animal.call(this, name);\n}\n\nCat.prototype = Object.create(Animal.prototype);\nCat.prototype.constructor = Cat;\n\nCat.prototype.meow = function () {\n  console.log(`meow, I am ${this.name}`);\n};\n\nmodule.exports = Cat;\n\n\n//# sourceURL=webpack:///./cat.js?");
 
 /***/ }),
 
@@ -35,17 +35,7 @@ eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\nvar
   \****************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\nvar inherit = __webpack_require__(/*! ./inherit.js */ \"./inherit.js\");\n\nfunction Dog(name) {\n  Animal.call(this, name);\n}\n\ninherit(Animal, Dog);\n\nDog.prototype.woof = function () {\n  console.log(`woof, I am ${this.name}`);\n};\n\nmodule.exports = Dog;\n\n\n//# sourceURL=webpack:///./dog.js?");
-
-/***/ }),
-
-/***/ "./inherit.js":
-/*!********************!*\
-  !*** ./inherit.js ***!
-  \********************/
-/***/ ((module) => {
-
-eval("const inherit = function(parent, child) {\n    var Surrogate = function () {};\n    Surrogate.prototype = parent.prototype;\n    child.prototype = new Surrogate();\n    child.prototype.constructor = child;\n};\n\nmodule.exports = inherit;\n\n//# sourceURL=webpack:///./inherit.js?");
+eval("var Animal = __webpack_require__(/*! ./animal.js */ \"./animal.js\");\n\nfunction Dog(name) {\n  Animal.call(this, name);\n}\n\nDog.prototype = Object.create(Animal.prototype);\nDog.prototype.constructor = Dog;\n\nDog.prototype.woof = function () {\n  console.log(`woof, I am ${this.name}`);\n};\n\nmodule.exports = Dog;\n\n\n//# sourceURL=webpack:///./dog.js?");
 
 /***/ }),
 
